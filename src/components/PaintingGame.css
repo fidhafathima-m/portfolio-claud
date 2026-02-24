@@ -1,0 +1,343 @@
+.atelier {
+  padding: 8rem 3rem;
+  background: var(--canvas);
+  position: relative;
+  overflow: hidden;
+}
+
+.atelier::before {
+  content: 'PAINT';
+  position: absolute;
+  font-family: 'Playfair Display', serif;
+  font-size: 18vw;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201,153,58,0.04);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.atelier__inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.atelier__inner.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.atelier__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.atelier__title {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  margin: 0.5rem 0 1rem;
+}
+
+.atelier__title em {
+  color: var(--pigment-gold);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.atelier__subtitle {
+  color: var(--ink-muted);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* Workspace layout */
+.atelier__workspace {
+  display: grid;
+  grid-template-columns: 130px 1fr 120px;
+  gap: 1rem;
+  align-items: start;
+}
+
+/* Sidebars */
+.atelier__tools,
+.atelier__palette {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: var(--canvas-mid);
+  border: 1px solid rgba(201,153,58,0.1);
+  padding: 1.25rem 1rem;
+}
+
+.tool-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.tool-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.2rem;
+}
+
+.tool-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(201,153,58,0.1);
+  color: var(--ink-muted);
+  padding: 0.45rem 0.6rem;
+  cursor: none;
+  font-family: 'EB Garamond', serif;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.tool-btn:hover {
+  border-color: rgba(201,153,58,0.4);
+  color: var(--ink);
+}
+
+.tool-btn.active {
+  background: rgba(201,153,58,0.12);
+  border-color: var(--pigment-gold);
+  color: var(--pigment-gold);
+}
+
+.tool-btn-icon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  width: 16px;
+  text-align: center;
+}
+
+.tool-btn-label {
+  font-size: 0.8rem;
+}
+
+.tool-btn--danger {
+  border-color: rgba(139,38,53,0.2);
+}
+.tool-btn--danger:hover {
+  border-color: var(--pigment-crimson);
+  color: #e05060;
+}
+
+.tool-btn--save {
+  border-color: rgba(90,122,92,0.3);
+}
+.tool-btn--save:hover {
+  border-color: var(--pigment-sage);
+  color: #8aba8c;
+}
+.tool-btn--save.saved {
+  background: rgba(90,122,92,0.15);
+  border-color: var(--pigment-sage);
+  color: #8aba8c;
+}
+
+.opacity-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 2px;
+  background: rgba(201,153,58,0.2);
+  outline: none;
+  cursor: none;
+}
+
+.opacity-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--pigment-gold);
+  cursor: none;
+}
+
+.stroke-counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(201,153,58,0.1);
+}
+
+.stroke-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--pigment-gold);
+  line-height: 1;
+}
+
+.stroke-lbl {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Canvas column */
+.atelier__canvas-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.canvas-prompt-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--canvas-mid);
+  border: 1px solid rgba(201,153,58,0.15);
+  border-bottom: none;
+  padding: 0.6rem 1rem;
+}
+
+.canvas-prompt-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--ink-muted);
+}
+
+.canvas-prompt-btn {
+  background: none;
+  border: 1px solid rgba(201,153,58,0.2);
+  color: var(--pigment-gold);
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.canvas-prompt-btn:hover {
+  background: rgba(201,153,58,0.1);
+  border-color: var(--pigment-gold);
+}
+
+.paint-canvas {
+  display: block;
+  width: 100%;
+  height: 520px;
+  border: 1px solid rgba(201,153,58,0.15);
+  touch-action: none;
+  user-select: none;
+}
+
+/* Palette sidebar */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.swatch {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  cursor: none;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.swatch:hover {
+  transform: scale(1.15);
+}
+
+.swatch--active {
+  border-color: var(--pigment-gold);
+  transform: scale(1.1);
+  box-shadow: 0 0 0 2px rgba(201,153,58,0.25);
+}
+
+.custom-color {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.color-picker-input {
+  width: 100%;
+  height: 36px;
+  border: 1px solid rgba(201,153,58,0.2);
+  background: var(--canvas);
+  cursor: none;
+  padding: 2px;
+}
+
+.active-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(201,153,58,0.1);
+}
+
+.active-swatch-blob {
+  width: 44px;
+  height: 44px;
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 70%;
+  transition: background 0.2s ease;
+}
+
+.active-swatch-name {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .atelier {
+    padding: 5rem 1.5rem;
+  }
+
+  .atelier__workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .atelier__tools {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .tool-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .atelier__palette {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .swatch-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .paint-canvas {
+    height: 380px;
+  }
+}
