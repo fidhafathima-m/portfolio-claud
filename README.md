@@ -18,24 +18,6 @@ npm run dev
 npm run build
 ```
 
-## 📸 Adding Your Photo
-
-In `src/components/Hero.jsx`, find the `hero__photo-placeholder` div and replace it with:
-
-```jsx
-<img src="/your-photo.jpg" alt="Fidha Fathima" />
-```
-
-Place your photo in the `public/` folder and reference it as `/your-photo.jpg`.
-
-## 🔗 Update Links
-
-In the files below, replace placeholder `#` or `https://linkedin.com` links with your real URLs:
-- `src/components/Hero.jsx` — hero buttons
-- `src/components/About.jsx` — social links (LinkedIn, GitHub)
-- `src/components/Projects.jsx` — project live demo links
-- `src/components/Contact.jsx` — social links
-
 ## 📁 Project Structure
 
 ```
